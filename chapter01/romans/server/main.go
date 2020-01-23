@@ -6,8 +6,9 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
-	"github.com/mrojasb2000/romans/numbers"
+	"github.com/mrojasb2000/building-restful-with-go/chapter01/romans/numbers"
 )
 
 func main() {
@@ -33,9 +34,9 @@ func main() {
 
 	// Create a server and run it on 8000 port
 	s := &http.Server{
-		Addr: ":8000",
-		ReadTimeout: 10 * time.Second,
-		WriteTimeout: 10 * time.Second,
+		Addr:           ":8000",
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
 	s.ListenAndServe()
