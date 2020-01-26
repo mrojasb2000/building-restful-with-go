@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+import "strings"
+
 // Host type
 type Host string
 
@@ -27,6 +29,22 @@ func (s HostSet) Contains(n Host) bool {
 	return found
 }
 
+// Select items on value equal on f(host)
+func (l HostList) Select(f func(Host) bool) HostList {
+	result := make(HostList, 0, len(l))
+	for _, h := range l {
+		if f(h) {
+			result = append(result, h)
+		}
+	}
+	return result
+}
+
+// IsDotOrg find item end with ".org"
+func IsDotOrg(h Host) bool {
+	return strings.HasSuffix(string(h), ".org")
+}
+
 func main() {
 	s := make(HostSet)
 	s.Add("google.org")
@@ -43,4 +61,6 @@ func main() {
 	for _, n := range hostnames {
 		fmt.Printf("%s? %v\n", n, s.Contains(n))
 	}
+
+	fmt.Printf("HostList: %v\n", hostnames.Select(IsDotOrg))
 }
