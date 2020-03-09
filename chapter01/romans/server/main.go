@@ -27,8 +27,10 @@ func main() {
 			}
 		} else {
 			// For all other requests, tell that Client sent a bad request
-			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte("404 - Bad Request"))
+			//w.WriteHeader(http.StatusBadRequest)
+			//w.Write([]byte("404 - Bad Request"))
+			w.WriteHeader(http.StatusAccepted)
+			w.Write([]byte("200 - OK"))
 		}
 	})
 
